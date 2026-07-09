@@ -1,3 +1,13 @@
 from django.contrib import admin
+from .models import Organization, Membership
 
-# Register your models here.
+
+@admin.register(Organization)
+class OrganizationAdmin(admin.ModelAdmin):
+    list_display = ('name', 'created_at')
+
+
+@admin.register(Membership)
+class MembershipAdmin(admin.ModelAdmin):
+    list_display = ('user', 'organization', 'role', 'created_at')
+    list_filter = ('role',)
